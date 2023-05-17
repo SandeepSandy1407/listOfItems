@@ -1,11 +1,16 @@
 // Write your code here
-import DestinationItem from '/DestinationItem'
+import {Component} from 'react'
+
+import DestinationItem from '../DestinationItem'
 
 import './index.css'
 
-import {Component} from 'react'
-
 let initialList = null
+
+const DestinationSearch = props => {
+  const {destinationsList} = props
+  initialList = destinationsList
+}
 
 class DestinationSearchClass extends Component {
   state = {
@@ -13,8 +18,6 @@ class DestinationSearchClass extends Component {
   }
 
   searchStarted = event => {
-    const temSearch = event.target.value
-
     this.setState({
       searchInput: event.target.value,
     })
@@ -22,10 +25,7 @@ class DestinationSearchClass extends Component {
 
   render() {
     const {searchInput} = this.state
-    const DestinationSearch = props => {
-      const {destinationsList} = props
-      initialList = destinationsList
-    }
+    console.log(initialList)
     const temList = initialList.filter(eachItem =>
       eachItem.name.includes(searchInput),
     )
